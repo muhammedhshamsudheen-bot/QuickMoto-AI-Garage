@@ -1,0 +1,246 @@
+{
+  "workshop_info": {
+    "name": "QuickMoto AI Garage & Motor Works",
+    "location": "Eachanari Vinayagar Temple Road, Pollachi Main Road, Coimbatore",
+    "phone": "+91 98943 12456",
+    "upi_id": "eachanari.motoworks@okaxis",
+    "operating_hours": "08:00 AM - 09:30 PM (Daily)",
+    "active_lifts": 4,
+    "total_bays": 6
+  },
+  "jobcards": [
+    {
+      "id": "EAM/JC/260902/4512",
+      "createdAt": "2026-09-02T09:30:00.000Z",
+      "customer": {
+        "name": "Karthik Raja",
+        "phone": "9894312456",
+        "vehicle": "Honda Activa 6G / 125",
+        "reg": "TN 66 BZ 4521"
+      },
+      "complaint": "oil change pannanum, front brake la sound varudhu, chain loose ah irukku, fork oil leak",
+      "items": [
+        {
+          "key": "oil_change",
+          "label": "Engine oil change",
+          "part": "Engine Oil 1L + Oil Filter",
+          "partCost": 450,
+          "laborCost": 100,
+          "duration": 20
+        },
+        {
+          "key": "brake_front",
+          "label": "Front brake noise",
+          "part": "Front Brake Pad Set",
+          "partCost": 350,
+          "laborCost": 150,
+          "duration": 30
+        },
+        {
+          "key": "chain_loose",
+          "label": "Chain loose / sprocket sound",
+          "part": "Chain Lubrication & Adjustment",
+          "partCost": 120,
+          "laborCost": 120,
+          "duration": 25
+        },
+        {
+          "key": "fork_oil_leak",
+          "label": "Front fork oil leak",
+          "part": "Fork Oil Seal Set + Fork Oil",
+          "partCost": 420,
+          "laborCost": 350,
+          "duration": 60
+        }
+      ],
+      "partsCost": 1340,
+      "laborCost": 720,
+      "grossTotal": 2060,
+      "discountPercent": 5,
+      "discountAmount": 103,
+      "grandTotal": 1957,
+      "duration": 155,
+      "eta": "Today \u00b7 01:15 PM",
+      "stageIndex": 3,
+      "stageLabel": "4. Road Test",
+      "mechanic": "Selvam (Senior Tech)",
+      "bay": "Bay 2 (Active Lift)",
+      "paymentStatus": "Paid via UPI",
+      "isPaid": true,
+      "updatedAt": "2026-09-09T12:06:16.262200",
+      "paidAt": "2026-09-09T12:06:20.600301",
+      "paymentDetails": {
+        "method": "UPI",
+        "amount": 1957,
+        "upiId": "eachanari.motoworks@okaxis"
+      }
+    },
+    {
+      "id": "EAM/JC/260902/8821",
+      "createdAt": "2026-09-02T10:15:00.000Z",
+      "customer": {
+        "name": "Vignesh S",
+        "phone": "9842211902",
+        "vehicle": "Royal Enfield Classic 350",
+        "reg": "TN 38 CX 8809"
+      },
+      "complaint": "general service, clutch slipping, rear brake sound",
+      "items": [
+        {
+          "key": "general_service",
+          "label": "General service / tuning",
+          "part": "Full Service Kit (Oil, Filter, Grease)",
+          "partCost": 600,
+          "laborCost": 250,
+          "duration": 90
+        },
+        {
+          "key": "clutch_issue",
+          "label": "Clutch hard / slipping",
+          "part": "Clutch Plate Set",
+          "partCost": 650,
+          "laborCost": 300,
+          "duration": 60
+        },
+        {
+          "key": "brake_rear",
+          "label": "Rear brake noise",
+          "part": "Rear Brake Shoe Set",
+          "partCost": 280,
+          "laborCost": 150,
+          "duration": 30
+        }
+      ],
+      "partsCost": 1530,
+      "laborCost": 700,
+      "grossTotal": 2230,
+      "discountPercent": 0,
+      "discountAmount": 0,
+      "grandTotal": 2230,
+      "duration": 200,
+      "eta": "Today \u00b7 03:00 PM",
+      "stageIndex": 1,
+      "stageLabel": "Parts Ready (Spares Allocated)",
+      "mechanic": "Ramu (RE Specialist)",
+      "bay": "Bay 1 (Heavy Lift)",
+      "paymentStatus": "Pending Delivery",
+      "isPaid": false
+    }
+  ],
+  "spares_inventory": [
+    {
+      "id": "SPR-01",
+      "name": "Engine Oil 10W-30 (1L)",
+      "stock": 40,
+      "unitCost": 450,
+      "reorderLevel": 10,
+      "category": "Fluids"
+    },
+    {
+      "id": "SPR-02",
+      "name": "Front Disc Brake Pad Set",
+      "stock": 18,
+      "unitCost": 350,
+      "reorderLevel": 5,
+      "category": "Brakes"
+    },
+    {
+      "id": "SPR-03",
+      "name": "Rear Drum Brake Shoe Set",
+      "stock": 25,
+      "unitCost": 280,
+      "reorderLevel": 8,
+      "category": "Brakes"
+    },
+    {
+      "id": "SPR-04",
+      "name": "Chain Lubricant & Cleaner Spray",
+      "stock": 30,
+      "unitCost": 120,
+      "reorderLevel": 10,
+      "category": "Lubes"
+    },
+    {
+      "id": "SPR-05",
+      "name": "Fork Oil Seal + Hydraulic Oil (350ml)",
+      "stock": 14,
+      "unitCost": 420,
+      "reorderLevel": 4,
+      "category": "Suspension"
+    },
+    {
+      "id": "SPR-06",
+      "name": "12V 5Ah Maintenance-Free Battery",
+      "stock": 9,
+      "unitCost": 1200,
+      "reorderLevel": 3,
+      "category": "Electrical"
+    },
+    {
+      "id": "SPR-07",
+      "name": "4-Plate Clutch Assembly Kit",
+      "stock": 11,
+      "unitCost": 650,
+      "reorderLevel": 4,
+      "category": "Engine & Drive"
+    },
+    {
+      "id": "SPR-08",
+      "name": "High-Efficiency Air Filter",
+      "stock": 22,
+      "unitCost": 180,
+      "reorderLevel": 6,
+      "category": "Filters"
+    },
+    {
+      "id": "SPR-09",
+      "name": "Spark Plug (Standard Twin-Spade)",
+      "stock": 35,
+      "unitCost": 120,
+      "reorderLevel": 12,
+      "category": "Ignition"
+    },
+    {
+      "id": "SPR-10",
+      "name": "Full Detailing & Foam Wash Pack",
+      "stock": 50,
+      "unitCost": 80,
+      "reorderLevel": 15,
+      "category": "Cleaning"
+    }
+  ],
+  "sos_requests": [
+    {
+      "id": "SOS-6787",
+      "timestamp": "2026-09-09T12:06:27.531504",
+      "customerName": "Suresh M",
+      "phone": "9894012345",
+      "location": "Eachanari Toll Gate NH83",
+      "issue": "Engine smoke & belt snapped",
+      "status": "Dispatched Rescue Van",
+      "eta": "10-15 mins"
+    },
+    {
+      "id": "SOS-8921",
+      "timestamp": "2026-09-09T06:12:00.000Z",
+      "customerName": "Dinesh Kumar",
+      "phone": "9894102911",
+      "location": "Near Eachanari Junction Toll Gate, NH 83",
+      "issue": "Tyre Puncture & Engine Miss",
+      "status": "Assigned to Tow Van 1",
+      "eta": "12 mins"
+    }
+  ],
+  "pickup_requests": [
+    {
+      "id": "PKP-6792",
+      "timestamp": "2026-09-09T12:06:32.770825",
+      "customerName": "Ananya R",
+      "phone": "9894312456",
+      "address": "Plot 14, Vignesh Nagar, Eachanari",
+      "vehicle": "Honda Activa 6G",
+      "slot": "Today 02:00 PM",
+      "status": "Confirmed (Driver Assigned)"
+    }
+  ]
+}

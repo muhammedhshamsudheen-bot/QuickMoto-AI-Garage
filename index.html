@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickMoto AI Garage — Smart Two-Wheeler Workshop Management</title>
+  <meta name="description" content="Professional two-wheeler garage management platform with digital customer check-in, 6-stage live repair tracking, dynamic billing with GST, AI decision log, and live user validation.">
+  
+  <!-- Tailwind CSS CDN for grid & responsive layout support -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            amber: {
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Clean Custom Design System -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#F4F6F9] text-[#0F172A] min-h-screen">
+
+  <!-- ==================== TOP HEADER ==================== -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-[#111723]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 py-3.5 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
+      
+      <!-- Logo & Title -->
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/40 flex items-center justify-center text-2xl shadow-inner">
+          🏍️
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-wide leading-none font-heading">
+              QUICKMOTO AI GARAGE
+            </h1>
+            <span class="mw-badge-glow px-2 py-0.5 rounded text-[10px] font-bold uppercase hidden sm:inline-block">
+              Smart Workshop V2
+            </span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 flex items-center gap-1.5 font-medium">
+            <span class="text-amber-600 dark:text-amber-400">📍</span> Eachanari Vinayagar Temple, Pollachi Main Road, Coimbatore · Ph: +91 98943 12456
+          </p>
+        </div>
+      </div>
+
+      <!-- Controls & Actions -->
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <!-- Persistent Storage Indicator -->
+        <div id="backend-status-badge" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-500/15 border border-emerald-500/40 text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>LocalStorage Sync Active</span>
+        </div>
+
+        <!-- Live Time Display -->
+        <div class="bg-slate-100 dark:bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-mono text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+          <span class="text-amber-600 dark:text-amber-400">🕒</span>
+          <span id="live-date-display">Today</span> · <span id="live-clock-display" class="font-bold text-slate-900 dark:text-white">--:--:--</span>
+        </div>
+
+        <!-- Theme Toggle (Light / Dark) -->
+        <button
+          id="btn-toggle-theme"
+          class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 font-bold transition-all flex items-center gap-1.5"
+          title="Switch Light or Dark Mode"
+        >
+          <span id="theme-icon">🌙</span> <span id="theme-label">Dark Mode</span>
+        </button>
+
+        <!-- Sound Toggle -->
+        <button
+          id="btn-toggle-sound"
+          class="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 font-semibold"
+          title="Toggle Audio Feedback"
+        >
+          🔊 Sound ON
+        </button>
+
+        <!-- Doorstep Pickup Button -->
+        <button
+          id="header-btn-pickup"
+          class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow transition-all"
+        >
+          <span>🛵</span> Pickup
+        </button>
+
+        <!-- 24/7 SOS Emergency Button -->
+        <button
+          id="header-btn-sos"
+          class="mw-btn-sos px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow"
+        >
+          <span>🚨</span> 24/7 SOS
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== NAVIGATION TABS ==================== -->
+  <nav class="bg-white dark:bg-[#121722] border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 sticky top-[69px] z-30 overflow-x-auto scrollbar-none shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center gap-1">
+      
+      <!-- Core Navigation Tabs Required by User Specification -->
+      <button data-tab="dashboard" class="nav-tab-btn nav-tab-active px-3.5 py-3 text-xs sm:text-sm font-bold flex items-center gap-1.5 whitespace-nowrap">
+        <span>📊</span> Dashboard
+      </button>
+
+      <button data-tab="diagnosis" class="nav-tab-btn px-3.5 py-3 text-xs sm:text-sm font-bold flex items-center gap-1.5 whitespace-nowrap">
+        <span>📋</span> Customer Check-in
+      </button>
+
+      <button data-tab="bays" class="nav-tab-btn px-3.5 py-3 text-xs sm:text-sm font-bold flex items-center gap-1.5 whitespace-nowrap">
+        <span>🛠️</span> Repair Tracking
+        <span id="nav-badge-active-bays" class="bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold">Live</span>
+      </button>
+
+      <button data-tab="billing" class="nav-tab-btn px-3.5 py-3 text-xs sm:text-sm font-bold flex items-center gap-1.5 whitespace-nowrap">
+        <span>🧾</span> Billing &amp; Invoice
+      </button>
+
+      <button data-tab="validation" class="nav-tab-btn px-3.5 py-3 text-xs sm:text-sm font-bold flex items-center gap-1.5 whitespace-nowrap">
+        <span>👥</span> User Validation
+        <span class="bg-emerald-100 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold">Tested</span>
+      </button>
+
+      <!-- Auxiliary Workshop Utilities Tabs -->
+      <button data-tab="inspection" class="nav-tab-btn px-3 py-3 text-xs text-slate-600 dark:text-slate-400 font-semibold flex items-center gap-1.5 whitespace-nowrap">
+        <span>🔍</span> 21-Point Checkup
+      </button>
+
+      <button data-tab="spares" class="nav-tab-btn px-3 py-3 text-xs text-slate-600 dark:text-slate-400 font-semibold flex items-center gap-1.5 whitespace-nowrap">
+        <span>📦</span> Spares Catalog
+      </button>
+
+      <button data-tab="nearby" class="nav-tab-btn px-3 py-3 text-xs text-slate-600 dark:text-slate-400 font-semibold flex items-center gap-1.5 whitespace-nowrap">
+        <span>🗺️</span> Nearby Towing
+      </button>
+
+      <button data-tab="history" class="nav-tab-btn px-3 py-3 text-xs text-slate-600 dark:text-slate-400 font-semibold flex items-center gap-1.5 whitespace-nowrap">
+        <span>📜</span> Past Bills
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ==================== MAIN CONTENT CONTAINERS ==================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- 1. DASHBOARD OVERVIEW -->
+    <section id="tab-panel-dashboard" class="tab-content-panel">
+      <div id="dashboard-view-container">
+        <!-- Rendered by DashboardView.js -->
+      </div>
+    </section>
+
+    <!-- 2. CUSTOMER CHECK-IN & AI ESTIMATOR -->
+    <section id="tab-panel-diagnosis" class="tab-content-panel hidden space-y-6">
+      
+      <!-- 1-Click Quick Demo Presets -->
+      <div class="mw-card p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white dark:bg-[#161D2C]">
+        <div class="flex items-center gap-2">
+          <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">⚡ 1-Click Example Scenarios:</span>
+        </div>
+        <div id="preset-scenarios-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 flex-1 max-w-4xl">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Input Grid: Customer Info & Problem Description -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        
+        <!-- Customer & Bike Profile Card -->
+        <div class="mw-card rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#161D2C]">
+          <div class="bg-slate-50 dark:bg-slate-900/90 px-4 py-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <h3 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2">
+              <span class="text-amber-600 dark:text-amber-400">👤</span> Customer &amp; Bike Details
+            </h3>
+            <span class="text-[11px] font-mono text-emerald-600 font-bold">Auto-Saves to LocalStorage</span>
+          </div>
+          
+          <div class="p-4 sm:p-5 space-y-4">
+            <div>
+              <label class="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">Customer Name</label>
+              <input
+                id="customer-name-input"
+                type="text"
+                class="mw-input w-full px-3 py-2 text-sm rounded-lg"
+                placeholder="Enter customer name e.g. Karthik Raja"
+              />
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">Mobile Phone Number (for WhatsApp Bill)</label>
+              <input
+                id="customer-phone-input"
+                type="tel"
+                class="mw-input w-full px-3 py-2 text-sm rounded-lg font-mono"
+                placeholder="10-digit mobile number e.g. 9894312456"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">Select Bike / Scooter Model</label>
+                <select id="customer-vehicle-select" class="mw-input w-full px-3 py-2 text-sm rounded-lg appearance-none">
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+
+              <div>
+                <label class="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">Bike Number (Reg No.)</label>
+                <input
+                  id="customer-reg-input"
+                  type="text"
+                  class="mw-input w-full px-3 py-2 text-sm rounded-lg font-mono uppercase"
+                  placeholder="e.g. TN 66 BZ 4521"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Problem Description Box -->
+        <div class="mw-card rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#161D2C] flex flex-col justify-between">
+          <div class="bg-slate-50 dark:bg-slate-900/90 px-4 py-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <h3 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2">
+              <span class="text-amber-600 dark:text-amber-400">🧠</span> Type or Speak Bike Problem (Tanglish / English)
+            </h3>
+            <button
+              id="btn-voice-dictate"
+              type="button"
+              class="px-2.5 py-1 rounded bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-[11px] font-bold text-amber-700 dark:text-amber-300 flex items-center gap-1.5 transition-all"
+            >
+              <span>🎤</span> Speak Problem
+            </button>
+          </div>
+
+          <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+            <textarea
+              id="complaint-textarea"
+              class="mw-input w-full p-3 text-sm rounded-lg min-h-[110px] resize-none flex-1 font-sans"
+              placeholder="Type your bike complaint in simple words: e.g. oil change pannanum, front brake noise, self start not working, chain loose sound, water wash..."
+            ></textarea>
+
+            <div>
+              <p class="text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-2">Common Problems — Tap to add quickly:</p>
+              <div id="quick-symptom-chips" class="flex flex-wrap gap-1.5">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="flex items-center justify-center gap-3 pt-2">
+        <button
+          id="btn-run-diagnosis"
+          class="mw-btn-primary px-8 py-3.5 rounded-xl text-sm font-bold flex items-center gap-2.5 shadow-lg uppercase tracking-wider"
+        >
+          <span>🔍</span> Find Problems &amp; Create Job Card
+        </button>
+        <button
+          id="btn-add-custom-repair"
+          class="mw-btn-outline-amber px-4 py-3.5 rounded-xl text-sm font-bold flex items-center gap-1.5"
+        >
+          <span>➕</span> Add Custom Work
+        </button>
+      </div>
+
+      <!-- Visual Bike Anatomy Hotspot Explorer -->
+      <div id="bike-anatomy-container">
+        <!-- Rendered by BikeAnatomyExplorer.js -->
+      </div>
+
+      <!-- Loading Indicator -->
+      <div id="diagnosis-loader" class="hidden p-8 text-center space-y-2">
+        <div class="inline-block w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-xs text-amber-700 dark:text-amber-400 font-mono tracking-wide">Calculating spare parts price and mechanic labor...</p>
+      </div>
+
+      <!-- Output Dashboard -->
+      <div id="diagnosis-output-dashboard" class="space-y-6">
+        
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div class="mw-metric-card p-3.5">
+            <span class="text-[11px] text-slate-600 dark:text-slate-400 block font-medium">Job Card / Check-In ID</span>
+            <span id="metric-job-id" class="font-mono text-xs sm:text-sm font-bold text-amber-700 dark:text-amber-400">QM-2026-...</span>
+          </div>
+
+          <div class="mw-metric-card p-3.5">
+            <span class="text-[11px] text-slate-600 dark:text-slate-400 block font-medium">Spare Parts Total</span>
+            <span id="metric-parts-cost" class="font-mono text-base sm:text-lg font-bold text-slate-900 dark:text-white">₹0</span>
+          </div>
+
+          <div class="mw-metric-card p-3.5">
+            <span class="text-[11px] text-slate-600 dark:text-slate-400 block font-medium">Mechanic Labor Fee</span>
+            <span id="metric-labor-cost" class="font-mono text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200">₹0</span>
+          </div>
+
+          <div class="mw-metric-card highlight p-3.5">
+            <span class="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold block">Estimated Bill Total</span>
+            <span id="metric-grand-total" class="font-mono text-lg sm:text-xl font-black text-emerald-700 dark:text-emerald-400">₹0</span>
+          </div>
+
+          <div class="mw-metric-card p-3.5">
+            <span class="text-[11px] text-slate-600 dark:text-slate-400 block font-medium">Estimated Ready Time</span>
+            <span id="metric-est-eta" class="font-mono text-xs sm:text-sm font-bold text-amber-700 dark:text-amber-300">Today</span>
+          </div>
+        </div>
+
+        <!-- Itemized Table -->
+        <div class="mw-card rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#161D2C] shadow-sm">
+          <div class="bg-slate-50 dark:bg-slate-900/90 px-4 py-3 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+              <span class="text-amber-600 dark:text-amber-400">📑</span> List of Work &amp; Recommended Spare Parts
+            </h3>
+
+            <!-- Bill Adjusters -->
+            <div class="flex items-center gap-3 flex-wrap">
+              <div class="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400">
+                <span class="font-semibold">Discount:</span>
+                <select id="estimate-discount-select" class="mw-input px-2 py-1 rounded text-xs">
+                  <option value="0">None (0%)</option>
+                  <option value="5">Regular Customer (5%)</option>
+                  <option value="10">Festival Offer (10%)</option>
+                  <option value="15">Special Discount (15%)</option>
+                </select>
+              </div>
+
+              <div class="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400">
+                <span class="font-semibold">GST Tax:</span>
+                <select id="estimate-gst-select" class="mw-input px-2 py-1 rounded text-xs">
+                  <option value="0">None (0%)</option>
+                  <option value="5" selected>GST 5%</option>
+                  <option value="18">GST 18%</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm">
+              <thead class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-400 font-mono text-[11px] uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
+                <tr>
+                  <th class="py-3 px-4">Problem Detected</th>
+                  <th class="py-3 px-4">Spare Part / Action</th>
+                  <th class="py-3 px-4 text-right">Part Price</th>
+                  <th class="py-3 px-4 text-right">Labor Fee</th>
+                  <th class="py-3 px-4 text-right">Item Total</th>
+                  <th class="py-3 px-4 text-right">Time &amp; Action</th>
+                </tr>
+              </thead>
+              <tbody id="estimate-items-tbody" class="divide-y divide-slate-100 dark:divide-slate-800/60">
+                <!-- Populated by JS -->
+              </tbody>
+              <tfoot class="bg-slate-50 dark:bg-slate-950 font-bold border-t-2 border-slate-200 dark:border-slate-800 text-xs sm:text-sm">
+                <tr>
+                  <td colspan="2" class="py-3 px-4 text-slate-800 dark:text-slate-300 font-mono">Total Summary</td>
+                  <td id="table-parts-total" class="py-3 px-4 text-right font-mono text-slate-900 dark:text-white">₹0</td>
+                  <td id="table-labor-total" class="py-3 px-4 text-right font-mono text-slate-700 dark:text-slate-300">₹0</td>
+                  <td id="table-grand-total-val" class="py-3 px-4 text-right font-mono text-emerald-700 dark:text-emerald-400 text-base font-black">₹0</td>
+                  <td id="table-duration-total" class="py-3 px-4 text-right font-mono text-slate-500">0m</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <!-- Action Bar: Direct Track & Bill -->
+        <div class="p-4 bg-white dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">⚡</span>
+            <div>
+              <p class="text-xs font-bold text-slate-900 dark:text-white">Job Card Active &amp; Synced to Store</p>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400">View progress in Live Repair Tracking or proceed straight to dynamic invoice settlement.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 flex-wrap">
+            <button
+              id="checkin-btn-goto-tracking"
+              class="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow"
+            >
+              <span>🛠️</span> Open in Repair Tracking
+            </button>
+            <button
+              id="checkin-btn-goto-billing"
+              class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow"
+            >
+              <span>🧾</span> Open in Billing
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. LIVE REPAIR TRACKING (6 STAGES) -->
+    <section id="tab-panel-bays" class="tab-content-panel hidden">
+      <div id="live-bays-container">
+        <!-- Rendered by LiveBaysKanban.js -->
+      </div>
+    </section>
+
+    <!-- 4. DYNAMIC BILLING & INVOICE -->
+    <section id="tab-panel-billing" class="tab-content-panel hidden">
+      <div id="billing-view-container">
+        <!-- Rendered by BillingManager.js -->
+      </div>
+    </section>
+
+    <!-- 5. USER VALIDATION & TESTING MODULE -->
+    <section id="tab-panel-validation" class="tab-content-panel hidden">
+      <div id="user-validation-container">
+        <!-- Rendered by UserValidation.js -->
+      </div>
+    </section>
+
+    <!-- AUXILIARY PANELS -->
+    <section id="tab-panel-nearby" class="tab-content-panel hidden">
+      <div id="nearby-services-container">
+        <!-- Rendered by NearbyServicesHub.js -->
+      </div>
+    </section>
+
+    <section id="tab-panel-inspection" class="tab-content-panel hidden">
+      <div id="digital-inspection-container">
+        <!-- Rendered by DigitalInspection.js -->
+      </div>
+    </section>
+
+    <section id="tab-panel-spares" class="tab-content-panel hidden">
+      <div id="spares-catalog-container">
+        <!-- Rendered by SparesManager.js -->
+      </div>
+    </section>
+
+    <section id="tab-panel-history" class="tab-content-panel hidden">
+      <div id="job-history-container">
+        <!-- Rendered by HistoryManager.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm pointer-events-none">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+  <div id="emergency-sos-modal" class="hidden"></div>
+  <div id="customer-dispatch-modal" class="hidden"></div>
+  <div id="doorstep-pickup-modal" class="hidden"></div>
+
+  <!-- ==================== HIDDEN PRINT SHEET AREA ==================== -->
+  <div id="print-sheet-area"></div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="mt-12 py-6 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B0F17] text-center text-xs text-slate-600 dark:text-slate-400 space-y-1">
+    <p class="font-medium">QuickMoto AI Garage · NH 83 Pollachi Main Road, Eachanari, Coimbatore - 641021</p>
+    <p class="text-[11px] text-slate-500 font-mono">
+      AI Diagnostic Guidance System · Multi-Brand Bike Workshop · Emergency Helpline: +91 98422 99001
+    </p>
+  </footer>
+
+  <!-- ==================== MAIN SCRIPT ==================== -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

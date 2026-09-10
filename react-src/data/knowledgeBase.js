@@ -1,0 +1,306 @@
+/**
+ * QuickMoto AI Garage - Comprehensive Two-Wheeler Knowledge Base
+ * Covers Commuters, Scooters, Royal Enfield, Performance Bikes & EVs
+ */
+
+export const KNOWLEDGE_BASE = [
+  {
+    key: "oil_change",
+    label: "Engine Oil Change & Filter Replacement",
+    category: "Engine & Fluids",
+    severity: "routine",
+    keywords: ["oil change", "engine oil", "oil maathu", "oil poduren", "oil podanum", "oil top up", "lubricant", "service oil", "motul", "castrol"],
+    part: "Semi-Synthetic Engine Oil 1L (10W-30 / 15W-50) + O-Ring & Filter",
+    partCost: 450,
+    laborCost: 100,
+    duration: 20,
+    icon: "droplet",
+    safetyNote: "Recommended every 2,500 - 3,000 km to prevent piston and valve seizure."
+  },
+  {
+    key: "brake_front",
+    label: "Front Brake Noise / Low Bite / Pad Replacement",
+    category: "Braking System",
+    severity: "critical",
+    keywords: ["front brake", "munnal brake", "front braking", "front disc sound", "disc pad", "disc sound", "brake noise", "brake squeal", "front grip illa"],
+    part: "Ceramic Front Brake Pad Set / Caliper Pin Kit",
+    partCost: 350,
+    laborCost: 150,
+    duration: 25,
+    icon: "shield-alert",
+    safetyNote: "Crucial for emergency braking. Worn pads damage the rotor disc."
+  },
+  {
+    key: "brake_rear",
+    label: "Rear Brake Shoe Replacement & Drum Cleaning",
+    category: "Braking System",
+    severity: "critical",
+    keywords: ["rear brake", "back brake", "pinnal brake", "pin wheel brake", "drum brake", "rear sound", "rear brake loose", "brake pedal down"],
+    part: "Heavy-Duty Rear Brake Shoe Set + Return Spring",
+    partCost: 280,
+    laborCost: 150,
+    duration: 30,
+    icon: "shield-alert",
+    safetyNote: "Cleaned with air jet & emery paper to prevent rear wheel skidding."
+  },
+  {
+    key: "chain_loose",
+    label: "Drive Chain Slack Adjustment, Cleaning & Lube",
+    category: "Transmission & Drive",
+    severity: "warning",
+    keywords: ["chain loose", "chain sound", "chain noise", "saakiri", "chain la sappu", "sprocket sound", "chain cut aagum", "chain tight"],
+    part: "EP High-Tack Chain Lube + Link Adjustment Clip",
+    partCost: 140,
+    laborCost: 120,
+    duration: 25,
+    icon: "link",
+    safetyNote: "Prevents chain slippage, sprocket tooth wear, and sudden chain snapping."
+  },
+  {
+    key: "chain_sprocket_kit",
+    label: "Full Chain & Sprocket Set Replacement",
+    category: "Transmission & Drive",
+    severity: "critical",
+    keywords: ["sprocket maathanum", "chain teeth", "chain replacement", "full chain kit", "chain set", "sprocket wear"],
+    part: "Rolon Heavy-Duty O-Ring Chain & Sprocket Kit",
+    partCost: 1450,
+    laborCost: 350,
+    duration: 60,
+    icon: "disc",
+    safetyNote: "Replaces worn front/rear drive sprockets and drive link."
+  },
+  {
+    key: "fork_oil_leak",
+    label: "Front Telescopic Fork Oil Seal Replacement & Oil Overhaul",
+    category: "Suspension & Steering",
+    severity: "warning",
+    keywords: ["fork oil", "fork leak", "front fork", "fork la oil vara", "suspension leak", "shocker leak", "front jump aagala"],
+    part: "Genuine Double-Lip Fork Oil Seal Set + Fork Oil 350ml",
+    partCost: 450,
+    laborCost: 380,
+    duration: 60,
+    icon: "activity",
+    safetyNote: "Leaking oil can contaminate front brake discs and degrade steering control."
+  },
+  {
+    key: "cone_set",
+    label: "Handlebar Cone Set / Steering Stem Bearing Replacement",
+    category: "Suspension & Steering",
+    severity: "critical",
+    keywords: ["cone set", "handle bar hard", "handle loose", "steering wobble", "handle shake", "turning la hard", "front bearing"],
+    part: "Taper Roller Steering Cone Set & Race Kit",
+    partCost: 420,
+    laborCost: 300,
+    duration: 50,
+    icon: "compass",
+    safetyNote: "Eliminates high-speed handle wobble and dangerous turning stiffness."
+  },
+  {
+    key: "full_wash",
+    label: "Eco Foam Wash, Degreasing & Liquid Wax Polish",
+    category: "Detailing & Wash",
+    severity: "routine",
+    keywords: ["water wash", "full wash", "kazhuvu", "cleaning pannunga", "vandi wash", "foam wash", "diesel wash", "polish", "water service"],
+    part: "Bio-Degreaser + Hydrophobic Carnauba Wax Coating",
+    partCost: 90,
+    laborCost: 160,
+    duration: 30,
+    icon: "sparkles",
+    safetyNote: "High pressure underbody jet wash with chain degreaser and chrome polish."
+  },
+  {
+    key: "battery_dead",
+    label: "12V Battery Replacement & Charging Circuit Diagnosis",
+    category: "Electricals & Battery",
+    severity: "critical",
+    keywords: ["battery dead", "self start", "battery low", "start aagala", "self start aagala", "battery problem", "battery charge", "meter off"],
+    part: "Exide / Amaron 12V 5Ah Sealed VRLA Maintenance-Free Battery (48M Warranty)",
+    partCost: 1350,
+    laborCost: 100,
+    duration: 20,
+    icon: "zap",
+    safetyNote: "Tested with digital load tester and RR unit voltage regulator inspection."
+  },
+  {
+    key: "clutch_issue",
+    label: "Clutch Plate Assembly & Friction Disc Replacement",
+    category: "Engine & Clutch",
+    severity: "warning",
+    keywords: ["clutch hard", "clutch slip", "clutch problem", "clutch katti", "gear pidikala", "pickup drop", "engine rev aagudhu speed pola"],
+    part: "FCC / Makino 4-Plate Friction & Steel Clutch Kit",
+    partCost: 750,
+    laborCost: 350,
+    duration: 65,
+    icon: "gauge",
+    safetyNote: "Restores initial pickup, uphill torque, and prevents clutch bell burning."
+  },
+  {
+    key: "headlight",
+    label: "Headlight Bulb / High-Intensity LED Upgrade & Wiring Check",
+    category: "Electricals & Lighting",
+    severity: "warning",
+    keywords: ["headlight", "light not working", "light poagala", "head light problem", "dim light", "flickering light", "night light"],
+    part: "Philips HS1 35W Halogen / Osram All-Weather LED Bulb",
+    partCost: 260,
+    laborCost: 90,
+    duration: 15,
+    icon: "sun",
+    safetyNote: "Essential for night vision and highway driving safety."
+  },
+  {
+    key: "puncture",
+    label: "Tubeless Tyre Puncture Repair & Nitrogen Fill",
+    category: "Tyres & Wheels",
+    severity: "critical",
+    keywords: ["puncture", "tyre air", "air leak", "tube pottu", "wheel air", "flat tyre", "kaathu pochu", "tyre down"],
+    part: "High-Grade Butyl Rubber Cold Patch / Vulcanized Strip Kit",
+    partCost: 110,
+    laborCost: 80,
+    duration: 20,
+    icon: "circle-dot",
+    safetyNote: "Leak test in water tank with 32 PSI Nitrogen fill for cooler running."
+  },
+  {
+    key: "air_filter",
+    label: "Air Filter Cleaning / Element Replacement",
+    category: "Intake & Fuel",
+    severity: "routine",
+    keywords: ["air filter", "mileage", "mayilej kammi", "mileage kammi", "filter dirty", "breathing trouble", "smoke varudhu"],
+    part: "Viscous Paper Element / High-Flow Synthetic Air Filter",
+    partCost: 190,
+    laborCost: 60,
+    duration: 15,
+    icon: "wind",
+    safetyNote: "Boosts mileage by 10-15% and ensures optimal air-fuel mixture."
+  },
+  {
+    key: "spark_plug",
+    label: "Spark Plug Cleaning, Gapping & Replacement",
+    category: "Ignition & Electricals",
+    severity: "warning",
+    keywords: ["spark plug", "pickup illa", "hesitation", "engine miss", "start la delay", "misfire", "jerking", "missing aagudhu"],
+    part: "NGK / Bosch Iridium / Copper Core Spark Plug",
+    partCost: 140,
+    laborCost: 60,
+    duration: 15,
+    icon: "zap-off",
+    safetyNote: "0.8mm feeler gauge electrode gap calibration for instant cold starts."
+  },
+  {
+    key: "carburetor_injector",
+    label: "Carburetor Ultrasonic Clean / Fuel Injector Spray Tuning",
+    category: "Intake & Fuel",
+    severity: "warning",
+    keywords: ["carburetor clean", "injector clean", "fi cleaning", "petrol overflow", "idling problem", "engine off aagudhu", "slow throttle"],
+    part: "Carb Float Needle & Jet Kit / Injector Cleaner Fluid",
+    partCost: 220,
+    laborCost: 220,
+    duration: 40,
+    icon: "sliders",
+    safetyNote: "Ensures smooth idling at 1400 RPM without unexpected stall at traffic signals."
+  },
+  {
+    key: "horn",
+    label: "Dual Horn Replacement & Wiring Relay Harness",
+    category: "Electricals & Safety",
+    severity: "routine",
+    keywords: ["horn not working", "horn problem", "horn ordu", "horn illa", "horn low sound", "beep sound illa"],
+    part: "Roots / Uno Minda High-Tone Weatherproof Horn",
+    partCost: 160,
+    laborCost: 70,
+    duration: 15,
+    icon: "volume-2",
+    safetyNote: "Road safety sound compliance for highway and city riding."
+  },
+  {
+    key: "general_service",
+    label: "Master 42-Point General Service & Comprehensive Tune-Up",
+    category: "Periodic Maintenance",
+    severity: "routine",
+    keywords: ["general service", "full service", "tuning pannunga", "vandi tuning", "regular service", "complete checkup", "service podanum"],
+    part: "Full Periodic Kit (Oil Filter, Grease, Spark Plug Clean, Brake De-dust, Wash)",
+    partCost: 620,
+    laborCost: 350,
+    duration: 90,
+    icon: "settings",
+    safetyNote: "Complete bumper-to-bumper checkup including cable lubrication & bolt torquing."
+  },
+  {
+    key: "ev_belt_inspection",
+    label: "EV Drive Belt Tensioning & Motor Bearing Check (Ather/Ola)",
+    category: "EV Specific",
+    severity: "warning",
+    keywords: ["ev sound", "belt sound", "belt noise", "electric motor sound", "ather sound", "ola belt", "ev noise", "regen brake"],
+    part: "Gates Carbon Drive Belt Spray & Alignment Shims",
+    partCost: 320,
+    laborCost: 280,
+    duration: 40,
+    icon: "cpu",
+    safetyNote: "Ultrasonic belt tension frequency check to prevent high-speed motor shudder."
+  },
+  {
+    key: "ev_bms_check",
+    label: "EV Battery Pack Diagnostic, Cell Balancing & BMS Scan",
+    category: "EV Specific",
+    severity: "critical",
+    keywords: ["ev battery", "range drop", "bms error", "charging stop", "thermal warning", "scooter off aagiduchu", "error code"],
+    part: "OBD-II CANbus Diagnostic Health Report & Cell Balancing",
+    partCost: 250,
+    laborCost: 350,
+    duration: 45,
+    icon: "battery-charging",
+    safetyNote: "Detailed thermal mapping and voltage delta analysis across battery cells."
+  },
+  {
+    key: "silencer_smoke",
+    label: "Excessive White/Black Exhaust Smoke & Valve Stem Seal Check",
+    category: "Engine & Exhaust",
+    severity: "critical",
+    keywords: ["smoke", "puga varudhu", "white smoke", "black smoke", "exhaust smoke", "piston ring", "oil burning"],
+    part: "Engine Valve Stem Seals & Head Gasket Set",
+    partCost: 650,
+    laborCost: 600,
+    duration: 90,
+    icon: "cloud-drizzle",
+    safetyNote: "Indicates oil entering the combustion chamber; requires immediate attention."
+  }
+];
+
+export const QUICK_SYMPTOM_CHIPS = [
+  "oil change",
+  "front brake noise",
+  "rear brake noise",
+  "chain loose sound",
+  "fork oil leak",
+  "full water wash",
+  "battery dead",
+  "clutch slipping",
+  "headlight not working",
+  "missing aagudhu",
+  "cone set loose",
+  "general service",
+  "ev belt sound",
+  "white smoke"
+];
+
+export const POPULAR_VEHICLES = [
+  { name: "Honda Activa 6G / 125", category: "Scooter", oem: "Honda Genuine", tankCap: "5.3L", oilGrade: "10W-30 MB" },
+  { name: "Hero Splendor Plus / i3S", category: "Commuter", oem: "Hero Genuine Parts", tankCap: "9.8L", oilGrade: "10W-30 4T" },
+  { name: "TVS Jupiter / Ntorq 125", category: "Scooter", oem: "TVS Tru4", tankCap: "5.8L", oilGrade: "10W-30 SL" },
+  { name: "Bajaj Pulsar 150 / N160", category: "Sports Commuter", oem: "Bajaj Genuine DTSI", tankCap: "14L", oilGrade: "20W-50" },
+  { name: "Royal Enfield Classic 350 (J-Series)", category: "Cruiser", oem: "Royal Enfield Genuine", tankCap: "13L", oilGrade: "15W-50 Semi-Synth" },
+  { name: "Royal Enfield Hunter / Meteor 350", category: "Cruiser", oem: "Royal Enfield Genuine", tankCap: "13L", oilGrade: "15W-50 Semi-Synth" },
+  { name: "TVS Apache RTR 160 4V / 200", category: "Performance", oem: "TVS Racing", tankCap: "12L", oilGrade: "10W-40 Synthetic" },
+  { name: "Yamaha FZ-S / MT-15 V2", category: "Performance", oem: "Yamalube Genuine", tankCap: "10L", oilGrade: "10W-40 Yamalube" },
+  { name: "Ather 450X / 450S (EV)", category: "Electric", oem: "Ather Certified Spares", battery: "3.7 kWh", drive: "Gates Belt" },
+  { name: "Ola S1 Pro / Air (EV)", category: "Electric", oem: "Ola Certified Spares", battery: "4.0 kWh", drive: "Hub / Mid-Drive" }
+];
+
+export const WORKSHOP_STAGES = [
+  { id: "diagnosed", label: "Diagnosed", desc: "Inspection & Estimate Ready", icon: "clipboard" },
+  { id: "spares_allocated", label: "Spares Allocated", desc: "Parts verified & pulled", icon: "package" },
+  { id: "bay_in_progress", label: "In Progress", desc: "Mechanic actively working", icon: "wrench" },
+  { id: "quality_check", label: "Quality Check", desc: "Road test & torquing test", icon: "check-circle" },
+  { id: "ready_delivery", label: "Ready for Delivery", desc: "Polished & customer notified", icon: "sparkles" },
+  { id: "delivered", label: "Invoiced & Delivered", desc: "Payment received & closed", icon: "receipt" }
+];
